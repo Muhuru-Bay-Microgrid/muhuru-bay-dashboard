@@ -26,7 +26,7 @@ In Eclipse there appears to be at least two convienent ways to debug the app (at
 * As a Java main() application - simply select the org.mbmg.SpringBootVaadin's main() method and [Right Click] Debug As -> Java Application.
 * Using M2E - Simply select the Project in the Package Explorer and [Right Click] Debug As -> Spring Boot Application.
 
-Not yet how this gets modifed for running devmode and superdevmode (more to come)
+Not yet sure how this gets modifed for running devmode and superdevmode (more to come)
 
 
 #### TODO
