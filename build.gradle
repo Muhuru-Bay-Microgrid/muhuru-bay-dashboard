@@ -1,11 +1,17 @@
+/*
+ * Borrow liberaly from https://github.com/spring-projects/spring-framework/blob/master/build.gradle since
+ * this is an exemplar gradle build
+ */
 buildscript {
-    repositories {
-        maven { url "http://repo.spring.io/libs-snapshot" }
-        mavenLocal()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.0.RC5")
-    }
+	repositories {
+		maven { url "http://repo.spring.io/libs-snapshot" }
+		mavenLocal()
+	}
+	dependencies {
+		// Not sure how to make this DRY - maybe using the properties plugin
+		// https://github.com/stevesaliman/gradle-properties-plugin
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.1.RELEASE")
+	}
 }
 
 apply plugin: 'java'
@@ -14,33 +20,63 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply from: 'http://plugins.jasoft.fi/vaadin.plugin'
 
-project.version = '0.1.0'
+ext {
+	project.version 	= '1.0.0.BUILD-SNAPSHOT'
+	springBootVersion 	= '1.0.1.RELEASE'
+	vaadinVersion 		= '7.1.13'
+}
 
 jar {
-    baseName = 'muhuru-bay-dashboard'
-    version =  project.version
+	baseName = 'muhuru-bay-dashboard'
+	version =  project.version
 	vaadin.addon.title = 'Muhuru Bay Dashboard'
 }
 
 repositories {
-    mavenCentral()
-    maven { url "http://repo.spring.io/libs-snapshot" }
+	mavenCentral()
+	maven { url "http://repo.spring.io/libs-release" }
+	maven { url "http://repo.spring.io/libs-snapshot" }
+	maven { url "http://repo.spring.io/milestone" }  // for AspectJ 1.8.0.RC3
 	maven { url "http://maven.vaadin.com/vaadin-addons"}
 	maven { url "http://oss.sonatype.org/releases"}
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-actuator")
-	compile("com.vaadin:vaadin-server:7.1.12")
-	compile("com.vaadin:vaadin-client-compiled:7.1.12")
-	compile("com.vaadin:vaadin-themes:7.1.12")
+	compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+	compile("org.springframework.boot:spring-boot-starter-actuator:$springBootVersion")
+	compile("com.vaadin:vaadin-server:$vaadinVersion")
+	compile("com.vaadin:vaadin-client-compiled:$vaadinVersion")
+	compile("com.vaadin:vaadin-themes:$vaadinVersion")
 	compile("ru.xpoft.vaadin:spring-vaadin-integration:2.0.2")
 	compile("org.vaadin.addons:dcharts-widget:1.7.0")
 	compile("com.amazonaws:aws-java-sdk:1.7.4")
-    testCompile("junit:junit")
+	testCompile("junit:junit")
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.11'
+configurations {
+	javadocDeps
+ }
+
+ dependencies {
+	javadocDeps "javax.portlet:portlet-api:2.0"
+	javadocDeps "javax.servlet:javax.servlet-api:3.0.1"
+	javadocDeps "com.vaadin:vaadin-server:${project.ext.vaadinVersion}"
+ }
+
+ javadoc {
+	classpath += configurations.javadocDeps
+	options.addStringOption("sourcepath", "")
+ }
+
+compileJava {
+	sourceCompatibility=1.8
+	targetCompatibility=1.8
 }
+
+compileTestJava {
+	sourceCompatibility=1.8
+	targetCompatibility=1.8
+	options.compilerArgs += "-parameters"
+}
+
+task wrapper(type: Wrapper) { gradleVersion = '1.11' }
