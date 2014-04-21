@@ -4,7 +4,7 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.0.RC5")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.0.RELEASE")
     }
 }
 
@@ -14,7 +14,17 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply from: 'http://plugins.jasoft.fi/vaadin.plugin'
 
-project.version = '0.1.0'
+ext {
+	project.version 	= '1.0.0.SNAPSHOT'
+	springBootVersion 	= '1.0.1.RELEASE'
+	vaadinVersion 		= '7.1.13'
+}
+
+compileJava {
+	sourceCompatibility	= 1.8
+	targetCompatibility	= 1.8
+}
+
 
 jar {
     baseName = 'muhuru-bay-dashboard'
@@ -30,11 +40,11 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-actuator")
-	compile("com.vaadin:vaadin-server:7.1.12")
-	compile("com.vaadin:vaadin-client-compiled:7.1.12")
-	compile("com.vaadin:vaadin-themes:7.1.12")
+    compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+    compile("org.springframework.boot:spring-boot-starter-actuator:$springBootVersion")
+	compile("com.vaadin:vaadin-server:$vaadinVersion")
+	compile("com.vaadin:vaadin-client-compiled:$vaadinVersion")
+	compile("com.vaadin:vaadin-themes:$vaadinVersion")
 	compile("ru.xpoft.vaadin:spring-vaadin-integration:2.0.2")
 	compile("org.vaadin.addons:dcharts-widget:1.7.0")
 	compile("com.amazonaws:aws-java-sdk:1.7.4")
