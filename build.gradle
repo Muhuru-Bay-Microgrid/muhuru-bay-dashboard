@@ -21,9 +21,10 @@ apply plugin: 'spring-boot'
 apply from: 'http://plugins.jasoft.fi/vaadin.plugin'
 
 ext {
-	project.version 	= '1.0.0.BUILD-SNAPSHOT'
-	springBootVersion 	= '1.0.1.RELEASE'
-	vaadinVersion 		= '7.1.13'
+	project.version 	        = '1.0.0.BUILD-SNAPSHOT'
+	springBootVersion 	        = '1.0.1.RELEASE'
+    springDataSimpleDBVersion   = '1.0'
+	vaadinVersion 		        = '7.1.13'
 }
 
 jar {
@@ -44,6 +45,7 @@ repositories {
 dependencies {
 	compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
 	compile("org.springframework.boot:spring-boot-starter-actuator:$springBootVersion")
+    compile("com.3pillarglobal.labs:spring-data-simpledb:${springDataSimpleDBVersion}")
 	compile("com.vaadin:vaadin-server:$vaadinVersion")
 	compile("com.vaadin:vaadin-client-compiled:$vaadinVersion")
 	compile("com.vaadin:vaadin-themes:$vaadinVersion")
