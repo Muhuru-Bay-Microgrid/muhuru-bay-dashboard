@@ -18,13 +18,14 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'groovy'
 apply from: 'http://plugins.jasoft.fi/vaadin.plugin'
 
 ext {
 	project.version 	        = '1.0.0.BUILD-SNAPSHOT'
-	springBootVersion 	        = '1.0.1.RELEASE'
+	springBootVersion 	        = '1.0.2.RELEASE'
     springDataSimpleDBVersion   = '1.0'
-	vaadinVersion 		        = '7.1.13'
+	vaadinVersion 		        = '7.1.14'
 }
 
 jar {
@@ -52,7 +53,16 @@ dependencies {
 	compile("ru.xpoft.vaadin:spring-vaadin-integration:2.0.2")
 	compile("org.vaadin.addons:dcharts-widget:1.7.0")
 	compile("com.amazonaws:aws-java-sdk:1.7.4")
-	testCompile("junit:junit")
+    // mandatory dependencies for using Spock
+    groovy("org.codehaus.groovy:groovy-all:2.2.0")
+    testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
+
+    // optional dependencies for using Spock
+    testCompile "org.hamcrest:hamcrest-core:1.2" // only necessary if Hamcrest matchers are used
+    testRuntime "cglib:cglib-nodep:2.2"     // enables mocking of classes (in addition to interfaces)
+    testRuntime "org.objenesis:objenesis:1.2" // enables mocking of classes without default constructor (together with CGLIB)
+
+    testCompile("junit:junit")
 }
 
 configurations {
