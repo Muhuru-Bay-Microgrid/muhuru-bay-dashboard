@@ -20,7 +20,7 @@ public class SimpleDBConfiguration {
     private String accessKey;
     @Value("${secretKey}")
     private String secretKey;
-    @Value("${domainPrefix:MuhuruBay)")
+    @Value("${domainPrefix:MuhuruBay}")
     private String domainPrefix;
     @Value("${dbUnavailableRetries:10}")
     private int dbUnavailableRetries;
