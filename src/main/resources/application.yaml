@@ -1,3 +1,8 @@
+server:
+  port: 9000
+management:
+  port: 9001
+  address: 127.0.0.1
 channel.label:
   A00: Humidity
   A01: Wind Speed
@@ -14,9 +19,4 @@ channel.label:
   A12: Frequency (AC)
   A13: Temperature 1
   A14: Temperature 2
-
-server:
-  port: 9022
-management:
-  port: 9001
-  address: 127.0.0.1
+message.text: Injected Message - It works!

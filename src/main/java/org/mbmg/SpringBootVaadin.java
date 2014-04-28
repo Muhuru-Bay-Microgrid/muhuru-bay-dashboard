@@ -9,20 +9,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
 public class SpringBootVaadin extends SpringBootServletInitializer {
 
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-        return new PropertySourcesPlaceholderConfigurer();
-    }
-
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(SpringBootVaadin.class, args);
+        SpringApplication app = new SpringApplication(SpringBootVaadin.class);
+        app.setShowBanner(false);
+        app.setLogStartupInfo(false);
+        app.run(args);
     }
 
     @Bean
