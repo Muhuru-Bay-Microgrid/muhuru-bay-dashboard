@@ -53,9 +53,11 @@ dependencies {
 	compile("ru.xpoft.vaadin:spring-vaadin-integration:2.0.2")
 	compile("org.vaadin.addons:dcharts-widget:1.7.0")
 	compile("com.amazonaws:aws-java-sdk:1.7.4")
+    compile("org.yaml:snakeyaml:1.13")
     // mandatory dependencies for using Spock
-    groovy("org.codehaus.groovy:groovy-all:2.2.0")
-    testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
+    compile("org.codehaus.groovy:groovy-all:2.2.0")
+    testCompile("org.spockframework:spock-core:0.7-groovy-2.0")
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
 
     // optional dependencies for using Spock
     testCompile "org.hamcrest:hamcrest-core:1.2" // only necessary if Hamcrest matchers are used
