@@ -1,0 +1,22 @@
+channel.label:
+  A00: Humidity
+  A01: Wind Speed
+  A02: Wind Direction
+  A03: AC Voltage
+  A04: AC Current
+  A05: DC Current (Wind Controller)
+  A06: DC Current (Solar Controller)
+  A07: DC Current (Station Battery)
+  A08: DV Voltage (Battery Bus)
+  A09: Active Power (AC)
+  A10: Reactive Power (AC)
+  A11: Power Factor (AC)
+  A12: Frequency (AC)
+  A13: Temperature 1
+  A14: Temperature 2
+
+server:
+  port: 9022
+management:
+  port: 9001
+  address: 127.0.0.1
