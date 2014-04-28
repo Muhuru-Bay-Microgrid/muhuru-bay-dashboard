@@ -1,7 +1,6 @@
 package org.mbmg;
 
 import com.vaadin.ui.UI;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
@@ -10,29 +9,35 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
 public class SpringBootVaadin extends SpringBootServletInitializer {
-    
-    @Bean 
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
+
+    public static void main(String[] args) throws Exception {
+        SpringApplication.run(SpringBootVaadin.class, args);
+    }
+
+    @Bean
     @Scope("prototype")
     public UI ui() {
-        return new MainUI();
+        return new DashboardMainUI();
     }
 
     @Bean
     public ServletRegistrationBean servletRegistrationBean() {
         final ServletRegistrationBean servletRegistrationBean
                 = new ServletRegistrationBean(
-                        new ru.xpoft.vaadin.SpringVaadinServlet(),
-                        "/*", "/VAADIN/*");
+                new ru.xpoft.vaadin.SpringVaadinServlet(),
+                "/*", "/VAADIN/*");
         return servletRegistrationBean;
-    }
-
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(SpringBootVaadin.class, args);
     }
 
 }
