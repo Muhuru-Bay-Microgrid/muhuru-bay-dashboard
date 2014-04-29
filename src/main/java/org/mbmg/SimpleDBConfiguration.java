@@ -1,6 +1,7 @@
 package org.mbmg;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -8,14 +9,18 @@ import org.springframework.data.simpledb.core.SimpleDb;
 import org.springframework.data.simpledb.core.SimpleDbTemplate;
 import org.springframework.data.simpledb.core.domain.DomainManagementPolicy;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by rpomeroy on 4/26/14.
  * https://github.com/3pillarlabs/spring-data-simpledb
  */
 @Configuration
 @PropertySource("file:///${HOME}/AWSCredentials.properties")
+@ConfigurationProperties
 public class SimpleDBConfiguration {
 
+    @NotNull
     @Value("${accessKey}")
     private String accessKey;
     @Value("${secretKey}")

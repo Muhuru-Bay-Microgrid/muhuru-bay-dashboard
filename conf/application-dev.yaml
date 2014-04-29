@@ -1,5 +1,5 @@
 server:
-  port: 9000
+  port: 9022
 management:
   port: 9001
   address: 127.0.0.1

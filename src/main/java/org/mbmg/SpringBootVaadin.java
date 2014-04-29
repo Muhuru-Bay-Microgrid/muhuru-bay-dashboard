@@ -33,7 +33,7 @@ public class SpringBootVaadin extends SpringBootServletInitializer {
         final ServletRegistrationBean servletRegistrationBean
                 = new ServletRegistrationBean(
                 new ru.xpoft.vaadin.SpringVaadinServlet(),
-                "/*", "/VAADIN/*");
+                "/app/*", "/VAADIN/*");
         return servletRegistrationBean;
     }
 
