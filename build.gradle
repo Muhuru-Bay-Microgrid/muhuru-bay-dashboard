@@ -63,7 +63,7 @@ dependencies {
     // mandatory dependencies for using Spock
     testCompile("org.codehaus.groovy:groovy-all:2.2.2")
     compile("org.hibernate:hibernate-validator:4.2.0.Final")
-    testCompile("org.spockframework:spock-core:0.7-groovy-1.8")
+    testCompile("org.spockframework:spock-core:0.7-groovy-2.0")
     testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
 
     // optional dependencies for using Spock
