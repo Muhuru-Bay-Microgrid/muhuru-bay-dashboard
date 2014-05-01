@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?p2f version='1.0.0'?>
+<p2f version='1.0.0'>
+  <ius size='30'>
+    <iu id='com.amazonaws.eclipse.dynamodb.feature.feature.group' name='Amazon DynamoDB Management' version='1.0.0.v201403191540'>
+      <repositories size='1'>
+        <repository location='http://aws.amazon.com/eclipse/site.xml'/>
+      </repositories>
+    </iu>
+    <iu id='com.amazonaws.eclipse.ec2.feature.group' name='Amazon EC2 Management' version='1.1.0.v201403191540'>
+      <repositories size='1'>
+        <repository location='http://aws.amazon.com/eclipse/site.xml'/>
+      </repositories>
+    </iu>
+    <iu id='com.amazonaws.eclipse.rds.feature.feature.group' name='Amazon RDS Management' version='1.0.0.v201403191540'>
+      <repositories size='1'>
+        <repository location='http://aws.amazon.com/eclipse/site.xml'/>
+      </repositories>
+    </iu>
+    <iu id='com.amazonaws.eclipse.datatools.enablement.simpledb.feature.feature.group' name='Amazon SimpleDB Management' version='1.0.0.v201403191540'>
+      <repositories size='1'>
+        <repository location='http://aws.amazon.com/eclipse/site.xml'/>
+      </repositories>
+    </iu>
+    <iu id='org.apache.ivy.feature.feature.group' name='Apache Ivy' version='2.4.0.cr1_20140315220245'>
+      <repositories size='1'>
+        <repository location='http://www.apache.org/dist/ant/ivyde/updatesite'/>
+      </repositories>
+    </iu>
+    <iu id='org.apache.ivyde.feature.feature.group' name='Apache IvyDE' version='2.2.0.final-201311091524-RELEASE'>
+      <repositories size='1'>
+        <repository location='http://www.apache.org/dist/ant/ivyde/updatesite'/>
+      </repositories>
+    </iu>
+    <iu id='com.amazonaws.eclipse.cloudformation.feature.feature.group' name='AWS CloudFormation Tools' version='1.0.0.v201403191540'>
+      <repositories size='1'>
+        <repository location='http://aws.amazon.com/eclipse/site.xml'/>
+      </repositories>
+    </iu>
+    <iu id='com.amazonaws.eclipse.elasticbeanstalk.feature.feature.group' name='AWS Elastic Beanstalk' version='1.0.0.v201404101655'>
+      <repositories size='1'>
+        <repository location='http://aws.amazon.com/eclipse/site.xml'/>
+      </repositories>
+    </iu>
+    <iu id='com.amazonaws.eclipse.sdk.feature.feature.group' name='AWS SDK for Java' version='2.0.0.v201402191314'>
+      <repositories size='1'>
+        <repository location='http://aws.amazon.com/eclipse/site.xml'/>
+      </repositories>
+    </iu>
+    <iu id='epp.package.java' name='Eclipse IDE for Java Developers' version='2.0.2.20140224-0000'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/releases/kepler'/>
+      </repositories>
+    </iu>
+    <iu id='epp.package.jee' name='Eclipse IDE for Java EE Developers' version='2.0.2.20140224-0000'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/releases/kepler'/>
+      </repositories>
+    </iu>
+    <iu id='org.springsource.ide.eclipse.commons.quicksearch.feature.feature.group' name='Eclipse Quicksearch' version='3.5.0.201404011422-RELEASE'>
+      <repositories size='1'>
+        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.3'/>
+      </repositories>
+    </iu>
+    <iu id='org.springsource.ide.eclipse.gradle.feature.feature.group' name='Gradle IDE' version='3.5.0.201404011446-RELEASE'>
+      <repositories size='3'>
+        <repository location='http://www.nodeclipse.org/updates/'/>
+        <repository location='http://dist.springsource.com/release/TOOLS/gradle/'/>
+        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.3'/>
+      </repositories>
+    </iu>
+    <iu id='org.codehaus.groovy21.feature.feature.group' name='Groovy Compiler 2.1 Feature' version='2.9.0.xx-201403261719-e43j8'>
+      <repositories size='1'>
+        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.3'/>
+      </repositories>
+    </iu>
+    <iu id='org.codehaus.groovy22.feature.feature.group' name='Groovy Compiler 2.2 Feature' version='2.9.0.xx-201403261719-e43j8'>
+      <repositories size='1'>
+        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.3'/>
+      </repositories>
+    </iu>
+    <iu id='org.codehaus.groovy.eclipse.feature.feature.group' name='Groovy-Eclipse Feature' version='2.9.0.xx-201403261719-e43j8'>
+      <repositories size='1'>
+        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.3'/>
+      </repositories>
+    </iu>
+    <iu id='markdown.editor.feature.feature.group' name='Markdown Editor' version='1.1.0.201402240523'>
+      <repositories size='1'>
+        <repository location='http://www.nodeclipse.org/updates/'/>
+      </repositories>
+    </iu>
+    <iu id='org.scala-ide.sdt.feature.feature.group' name='Scala IDE for Eclipse' version='4.0.0.nightly-2_10-201404240521-6ee8449'>
+      <repositories size='1'>
+        <repository location='http://download.scala-ide.org/nightly-scala-ide-4.0.x-210x'/>
+      </repositories>
+    </iu>
+    <iu id='org.springsource.ide.eclipse.dashboard.feature.group' name='Spring Dashboard (optional)' version='3.5.0.201404011422-RELEASE'>
+      <repositories size='3'>
+        <repository location='http://www.nodeclipse.org/updates/'/>
+        <repository location='http://dist.springsource.com/release/TOOLS/gradle/'/>
+        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.3'/>
+      </repositories>
+    </iu>
+    <iu id='org.springframework.ide.eclipse.ajdt.feature.feature.group' name='Spring IDE AJDT Integration (optional)' version='3.5.0.201404011509-RELEASE'>
+      <repositories size='1'>
+        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.3'/>
+      </repositories>
+    </iu>
+    <iu id='org.springframework.ide.eclipse.aop.feature.feature.group' name='Spring IDE AOP Extension (optional)' version='3.5.0.201404011509-RELEASE'>
+      <repositories size='1'>
+        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.3'/>
+      </repositories>
+    </iu>
+    <iu id='org.springframework.ide.eclipse.autowire.feature.feature.group' name='Spring IDE Autowire Extension (optional)' version='3.5.0.201404011509-RELEASE'>
+      <repositories size='1'>
+        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.3'/>
+      </repositories>
+    </iu>
+    <iu id='org.springframework.ide.eclipse.batch.feature.feature.group' name='Spring IDE Batch Extension (optional)' version='3.5.0.201404011509-RELEASE'>
+      <repositories size='1'>
+        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.3'/>
+      </repositories>
+    </iu>
+    <iu id='org.springframework.ide.eclipse.feature.feature.group' name='Spring IDE Core (required)' version='3.5.0.201404011509-RELEASE'>
+      <repositories size='1'>
+        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.3'/>
+      </repositories>
+    </iu>
+    <iu id='org.springframework.ide.eclipse.integration.feature.feature.group' name='Spring IDE Integration, Flex and Web Services Extension (optional)' version='3.5.0.201404011509-RELEASE'>
+      <repositories size='1'>
+        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.3'/>
+      </repositories>
+    </iu>
+    <iu id='org.springframework.ide.eclipse.maven.feature.feature.group' name='Spring IDE Maven Support' version='3.5.0.201404011509-RELEASE'>
+      <repositories size='1'>
+        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.3'/>
+      </repositories>
+    </iu>
+    <iu id='org.springframework.ide.eclipse.mylyn.feature.feature.group' name='Spring IDE Mylyn Integration (optional)' version='3.5.0.201404011509-RELEASE'>
+      <repositories size='1'>
+        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.3'/>
+      </repositories>
+    </iu>
+    <iu id='org.springframework.ide.eclipse.data.feature.feature.group' name='Spring IDE Spring Data Support' version='3.5.0.201404011509-RELEASE'>
+      <repositories size='1'>
+        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.3'/>
+      </repositories>
+    </iu>
+    <iu id='org.springframework.ide.eclipse.uaa.feature.feature.group' name='Spring UAA Integration (optional)' version='3.5.0.201404011422-RELEASE'>
+      <repositories size='3'>
+        <repository location='http://www.nodeclipse.org/updates/'/>
+        <repository location='http://dist.springsource.com/release/TOOLS/gradle/'/>
+        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.3'/>
+      </repositories>
+    </iu>
+    <iu id='com.vaadin.integration.eclipse.feature.group' name='Vaadin Plug-in for Eclipse' version='2.2.0.201312051010'>
+      <repositories size='1'>
+        <repository location='http://vaadin.com/eclipse/'/>
+      </repositories>
+    </iu>
+  </ius>
+</p2f>
