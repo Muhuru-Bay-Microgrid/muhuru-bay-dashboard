@@ -1,4 +1,4 @@
-package org.mbmg;
+package org.mbmg.mbmg;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;

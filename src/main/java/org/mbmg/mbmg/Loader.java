@@ -1,4 +1,4 @@
-package org.mbmg;
+package org.mbmg.mbmg;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

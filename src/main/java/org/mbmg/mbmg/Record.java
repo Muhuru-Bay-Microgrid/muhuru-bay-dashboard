@@ -1,4 +1,4 @@
-package org.mbmg;
+package org.mbmg.mbmg;
 
 import java.time.LocalDateTime;
 import java.util.Map;

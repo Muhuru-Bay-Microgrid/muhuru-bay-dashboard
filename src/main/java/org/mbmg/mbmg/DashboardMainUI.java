@@ -1,4 +1,4 @@
-package org.mbmg;
+package org.mbmg.mbmg;
 
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.Button;
@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DashboardMainUI extends UI implements Button.ClickListener {
-    
-	private static final long serialVersionUID = 1L;
 
-	@Autowired
+    private static final long serialVersionUID = 1L;
+
+    @Autowired
     private DashboardService service;
 
     @Override
@@ -24,15 +24,15 @@ public class DashboardMainUI extends UI implements Button.ClickListener {
 
         Button button = new Button("Click Me");
         button.addClickListener(this);
-        
+
         layout.addComponent(button);
 
         setContent(layout);
     }
 
-	@Override
-	public void buttonClick(ClickEvent event) {
-		Notification.show(service.sayHello());
-		
-	}
+    @Override
+    public void buttonClick(ClickEvent event) {
+        Notification.show(service.sayHello());
+
+    }
 }
