@@ -31,7 +31,7 @@ public class SimpleDBConfiguration {
     private int dbUnavailableRetries;
 
     @Bean
-    public SimpleDbTemplate simpleDBTemplate1() {
+    public SimpleDbTemplate mainData() {
         SimpleDb simpleDb = new SimpleDb(accessKey, secretKey);
         simpleDb.setConsistentRead(true);
         simpleDb.setDomainPrefix(domainPrefix);
@@ -39,6 +39,5 @@ public class SimpleDBConfiguration {
         simpleDb.setUnavailableServiceRetries(dbUnavailableRetries);
         simpleDb.afterPropertiesSet();
         return new SimpleDbTemplate(simpleDb);
-
     }
 }

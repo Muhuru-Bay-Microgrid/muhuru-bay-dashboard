@@ -2,6 +2,7 @@ package org.mbmg;
 
 import com.amazonaws.services.simpledb.model.ReplaceableAttribute;
 import com.amazonaws.services.simpledb.model.ReplaceableItem;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -16,6 +17,9 @@ import java.util.stream.Stream;
  */
 @org.springframework.stereotype.Repository
 public class SimpleDBRepository implements DashboardRepository {
+
+    @Autowired
+    private DashboardRepository repository;
     /**
      * Convert a record to a ReplaceableItem
      *
@@ -88,6 +92,10 @@ public class SimpleDBRepository implements DashboardRepository {
 
     @Override
     public <S extends Record> Iterable<S> save(Iterable<S> entities) {
+        /**
+         * Transform the Iterable<Records> into SimpleDB API objects (ReplacableItem
+         * with ReplaceableAttributes) and do a batch save to SimpleDB
+         */
         return null;
     }
 
