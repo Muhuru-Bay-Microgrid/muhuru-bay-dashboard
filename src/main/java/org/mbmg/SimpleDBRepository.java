@@ -1,4 +1,4 @@
-package org.mbmg.mbmg;
+package org.mbmg;
 
 import com.amazonaws.services.simpledb.model.ReplaceableAttribute;
 import com.amazonaws.services.simpledb.model.ReplaceableItem;

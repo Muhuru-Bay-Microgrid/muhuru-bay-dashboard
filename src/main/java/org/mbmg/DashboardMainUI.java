@@ -1,4 +1,4 @@
-package org.mbmg.mbmg;
+package org.mbmg;
 
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.Button;

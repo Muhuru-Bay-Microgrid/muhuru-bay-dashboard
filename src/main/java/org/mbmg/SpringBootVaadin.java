@@ -1,4 +1,4 @@
-package org.mbmg.mbmg;
+package org.mbmg;
 
 import com.vaadin.ui.UI;
 import org.springframework.boot.SpringApplication;
