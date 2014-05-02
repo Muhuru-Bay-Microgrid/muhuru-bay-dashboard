@@ -20,6 +20,9 @@ or on Windows
 
 Run `gradlew tasks` to view all the tasks.  To run the app simply type `gradlew run` and the app will launch locally at <http://localhost:9000>  
 
+#### Continuous Integration
+Is at <https://travis-ci.org/Muhuru-Bay-Microgrid/muhuru-bay-dashboard>
+
 ### Debugging
 In Eclipse there appears to be at least two convienent ways to debug the app (at the moment):
 

@@ -3,9 +3,11 @@ package org.mbmg;
 import com.amazonaws.services.simpledb.model.ReplaceableAttribute;
 import com.amazonaws.services.simpledb.model.ReplaceableItem;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.simpledb.core.SimpleDbTemplate;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -19,7 +21,9 @@ import java.util.stream.Stream;
 public class SimpleDBRepository implements DashboardRepository {
 
     @Autowired
-    private DashboardRepository repository;
+    @Qualifier("simpleDBTemplate")
+    private SimpleDbTemplate simpleDBTemplate;
+
     /**
      * Convert a record to a ReplaceableItem
      *

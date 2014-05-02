@@ -30,8 +30,8 @@ public class SimpleDBConfiguration {
     @Value("${dbUnavailableRetries:10}")
     private int dbUnavailableRetries;
 
-    @Bean
-    public SimpleDbTemplate mainData() {
+    @Bean(name = "simpleDBTemplate")
+    public SimpleDbTemplate simpleDBTemplate() {
         SimpleDb simpleDb = new SimpleDb(accessKey, secretKey);
         simpleDb.setConsistentRead(true);
         simpleDb.setDomainPrefix(domainPrefix);
