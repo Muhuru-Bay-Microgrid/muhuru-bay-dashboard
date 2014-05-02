@@ -1,4 +1,5 @@
 # Muruhu Bay Micro-grid Dashboard
+[![Build Status](https://travis-ci.org/Muhuru-Bay-Microgrid/muhuru-bay-dashboard.svg?branch=master)](https://travis-ci.org/Muhuru-Bay-Microgrid/muhuru-bay-dashboard)
 
 ## Overview
 
