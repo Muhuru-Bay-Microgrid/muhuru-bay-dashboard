@@ -6,7 +6,7 @@ This is a [Spring Boot](http://projects.spring.io/spring-boot/) based  [Vaadin](
 
 ### Prerequesites
 
- * Java 1.7+ (may move to 1.8 quickly)
+ * Java 1.8+
  
 ### Building and Running the App
 This is a [Gradle](http://www.gradle.org) based build with support for [GradleWrapper](http://www.gradle.org/docs/current/userguide/gradle_wrapper.html). This means you should be able to clone this repository and from the command-line (at the project root) execute either (Unix)
