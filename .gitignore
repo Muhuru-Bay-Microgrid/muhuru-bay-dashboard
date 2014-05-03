@@ -7,3 +7,5 @@ bin/
 build/
 target/
 *.iml
+*.ipr
+*.iws
