@@ -2,6 +2,7 @@ package org.mbmg;
 
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
@@ -24,8 +25,8 @@ public class Parser {
      * <p>
      * Note: Since we don't have timezone info we use LocalDateTime
      *
-     * @param timeString
-     * @return
+     * @param timeString a string of the form 'TM:1404120015'
+     * @return a LocalDateTime instance
      */
     public static LocalDateTime parseDate(String timeString) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("'TM:'yyMMddHHmm");
@@ -36,9 +37,12 @@ public class Parser {
     /**
      * Load the data from the file, transform into Record POJOs
      *
-     * @throws Exception
+     * @param filePath the path to the file to parse
+     * @return a List of Records
+     *
+     * @throws java.io.IOException when a parsing problem happens
      */
-    public static List<Record> parseFile(String filePath) throws Exception {
+    public static List<Record> parseFile(String filePath) throws IOException {
         return Files.lines(Paths.get(filePath)).
                 filter(s -> !s.isEmpty()).
                 map(Parser::toRecord).
@@ -48,8 +52,8 @@ public class Parser {
     /**
      * Extract record metadata, channel data, and make a Record
      *
-     * @param line
-     * @return
+     * @param line a line of data
+     * @return a Record
      */
     public static Record toRecord(String line) {
         String[] columns = line.split(";");

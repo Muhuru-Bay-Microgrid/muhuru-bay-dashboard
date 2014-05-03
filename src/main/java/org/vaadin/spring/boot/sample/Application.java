@@ -15,8 +15,6 @@
  */
 package org.vaadin.spring.boot.sample;
 
-import com.vaadin.addon.charts.Chart;
-import com.vaadin.addon.charts.model.ListSeries;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.Widgetset;
@@ -64,19 +62,17 @@ public class Application extends SpringBootServletInitializer {
 }
 
 @VaadinUI
-@Theme("sample")
 @Title("Root UI")
 class RootUI extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         setContent(new CssLayout(new Label("Hello! I'm the root UI!"),
-                new Link("Go to other UI", new ExternalResource("anotherUI"))));
+                new Link("Go to other UI", new ExternalResource("/anotherUI"))));
     }
 }
 
 @VaadinUI(path = "/anotherUI")
-@Widgetset("org.vaadin.spring.boot.sample.AppWidgetSet")
 @Title("Another UI")
 class AnotherUI extends UI {
 
@@ -103,11 +99,6 @@ class MyDefaultView extends VerticalLayout implements View {
         addComponent(new Label(
                 String.format("%s: It's %s and I was just entered!",
                         getClass().getSimpleName(), new Date())));
-
-        Chart chart = new Chart();
-        chart.getConfiguration().addSeries(new ListSeries(1, 2, 3));
-
-        addComponent(chart);
     }
 }
 
@@ -121,15 +112,6 @@ class MyView extends VerticalLayout implements View {
     }
 }
 
-@VaadinView(name = "hello/world", ui = AnotherUI.class)
-@Scope("prototype")
-class MyViewWithCustomName extends VerticalLayout implements View {
-
-    @Override
-    public void enter(ViewChangeListener.ViewChangeEvent event) {
-        addComponent(new Label(String.format("%s: It's %s and I was just entered!", getClass().getSimpleName(), new Date())));
-    }
-}
 
 @VaadinComponent
 @UIScope

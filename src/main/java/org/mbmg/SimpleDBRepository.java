@@ -27,8 +27,8 @@ public class SimpleDBRepository implements DashboardRepository {
     /**
      * Convert a record to a ReplaceableItem
      *
-     * @param line
-     * @return
+     * @param line a line of data
+     * @return a ReplaceableItem
      */
     private static ReplaceableItem toItem(String line) {
         /**
@@ -60,7 +60,7 @@ public class SimpleDBRepository implements DashboardRepository {
      * Helper method to create a Collection of ReplaceableAttribute for the data elements
      *
      * @param labeledValues each looks like "LABEL:VALUE"
-     * @return
+     * @return a Collection of ReplaceableAttributes
      */
     private static Collection<ReplaceableAttribute> dataAttributes(String[] labeledValues) {
         return Stream.of(labeledValues).
@@ -68,17 +68,6 @@ public class SimpleDBRepository implements DashboardRepository {
                 collect(Collectors.toList());
     }
 
-    /**
-     * Load the data from the file, transform into SimpleDB objects and save
-     *
-     * @throws Exception
-     */
-//    public List<ReplaceableItem> parse(Path aPath) throws Exception {
-//        return Files.lines(aPath).
-//                filter(s -> !s.isEmpty()).
-//                map(this::toItem).
-//                collect(Collectors.toList());
-//    }
     @Override
     public Iterable<Record> findAll(Sort sort) {
         return null;
