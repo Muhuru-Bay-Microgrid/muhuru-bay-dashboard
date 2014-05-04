@@ -51,15 +51,15 @@ import java.util.Date;
  */
 @EnableAutoConfiguration
 @ComponentScan
-public class Application extends SpringBootServletInitializer {
+public class DashboardApplication extends SpringBootServletInitializer {
+
+    public static void main(String[] args) throws Exception {
+        SpringApplication.run(DashboardApplication.class, args);
+    }
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(Application.class);
-    }
-
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(Application.class, args);
+        return application.sources(DashboardApplication.class);
     }
 }
 
