@@ -3,9 +3,12 @@
 .project
 .settings/
 .idea/
+out/
 bin/
 build/
+src/main/webapp/
 target/
 *.iml
-*.ipr
+*.ipw
 *.iws
+*.ipr

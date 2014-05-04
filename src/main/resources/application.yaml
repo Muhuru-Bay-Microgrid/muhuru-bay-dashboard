@@ -3,6 +3,7 @@ server:
 management:
   port: 9001
   address: 127.0.0.1
+vaadin.servlet.urlMapping: /*
 channel.label:
   A00: Humidity
   A01: Wind Speed

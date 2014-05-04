@@ -25,8 +25,20 @@ ext {
 	project.version 	        = '1.0.0.BUILD-SNAPSHOT'
 	springBootVersion 	        = '1.0.2.RELEASE'
     springDataSimpleDBVersion   = '1.0'
-	vaadinVersion 		        = '7.1.14'
+	vaadinVersion 		        = '7.1.15'
 }
+
+vaadin {
+    widgetset 'org.vaadin.spring.boot.sample.AppWidgetSet'
+    manageRepositories false
+    manageDependencies true
+
+    gwt {
+        logging true
+        logLevel "TRACE"
+    }
+}
+
 
 jar {
 	baseName = 'muhuru-bay-dashboard'
@@ -41,6 +53,7 @@ repositories {
 	maven { url "http://repo.spring.io/milestone" }  // for AspectJ 1.8.0.RC3
 	maven { url "http://maven.vaadin.com/vaadin-addons"}
 	maven { url "http://oss.sonatype.org/releases"}
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 }
 
 configurations {
@@ -56,10 +69,11 @@ dependencies {
 	compile("com.vaadin:vaadin-server:$vaadinVersion")
 	compile("com.vaadin:vaadin-client-compiled:$vaadinVersion")
 	compile("com.vaadin:vaadin-themes:$vaadinVersion")
-	compile("ru.xpoft.vaadin:spring-vaadin-integration:2.0.2")
-	compile("org.vaadin.addons:dcharts-widget:1.7.0")
-	compile("com.amazonaws:aws-java-sdk:1.7.4")
+    compile("com.vaadin.addon:vaadin-touchkit-agpl:3.0.1")
+    compile("org.vaadin.spring:spring-boot-vaadin:0.0.2-SNAPSHOT")
+    compile("com.amazonaws:aws-java-sdk:1.7.4")
     compile("org.yaml:snakeyaml:1.13")
+    compile("com.vaadin.addon:vaadin-charts:1.1.4")
     // mandatory dependencies for using Spock
     testCompile("org.codehaus.groovy:groovy-all:2.2.2")
     compile("org.hibernate:hibernate-validator:4.2.0.Final")
