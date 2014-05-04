@@ -28,6 +28,18 @@ ext {
 	vaadinVersion 		        = '7.1.15'
 }
 
+vaadin {
+    widgetset 'org.vaadin.spring.boot.sample.AppWidgetSet'
+    manageRepositories false
+    manageDependencies true
+
+    gwt {
+        logging true
+        logLevel "TRACE"
+    }
+}
+
+
 jar {
 	baseName = 'muhuru-bay-dashboard'
 	version =  project.version
@@ -61,6 +73,7 @@ dependencies {
     compile("org.vaadin.spring:spring-boot-vaadin:0.0.2-SNAPSHOT")
     compile("com.amazonaws:aws-java-sdk:1.7.4")
     compile("org.yaml:snakeyaml:1.13")
+    compile("com.vaadin.addon:vaadin-charts:1.1.4")
     // mandatory dependencies for using Spock
     testCompile("org.codehaus.groovy:groovy-all:2.2.2")
     compile("org.hibernate:hibernate-validator:4.2.0.Final")
