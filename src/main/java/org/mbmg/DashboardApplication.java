@@ -64,7 +64,7 @@ public class DashboardApplication extends SpringBootServletInitializer {
 }
 
 @VaadinUI
-@Theme("sample")
+@Theme("mbmg")
 @Title("Root UI")
 class RootUI extends UI {
 
