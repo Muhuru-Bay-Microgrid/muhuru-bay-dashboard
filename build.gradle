@@ -29,7 +29,7 @@ ext {
 }
 
 vaadin {
-    widgetset 'org.vaadin.spring.boot.sample.AppWidgetSet'
+    widgetset 'org.mbmg.AppWidgetSet'
     manageRepositories false
     manageDependencies true
 

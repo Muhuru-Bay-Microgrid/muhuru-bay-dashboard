@@ -76,7 +76,7 @@ class RootUI extends UI {
 }
 
 @VaadinUI(path = "/anotherUI")
-@Widgetset("org.vaadin.spring.boot.sample.AppWidgetSet")
+@Widgetset("org.mbmg.AppWidgetSet")
 @Title("Another UI")
 class AnotherUI extends UI {
 

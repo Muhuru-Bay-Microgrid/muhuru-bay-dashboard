@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.vaadin.spring.boot.sample.events;
+package org.mbmg.events;
 
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.Button;
