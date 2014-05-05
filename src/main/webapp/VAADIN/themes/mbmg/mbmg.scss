@@ -1,0 +1,44 @@
+/*
+ * Import the reindeer theme.
+ * This only allows us to use the mixins defined in it and does not add any styles by itself.
+ */
+@import "../reindeer/reindeer.scss";
+
+/* This contains all of your theme.*/
+@mixin mbmg {
+  /* Include all the styles from the reindeer theme */
+  @include reindeer;
+
+  /* Insert your theme rules here */
+  .v-label {
+    background-color: yellow;
+    font: 100% "Open Sans", sans-serif;
+    font-size: 14pt;
+  }
+
+  .header, .menu, .footer {
+    border: thin solid LightGrey;
+  }
+
+  .header {
+    text-align: center;
+    font-size: 32px;
+    height: 75px;
+  }
+
+  .menu {
+    height: 300px;
+    width: 20%;
+    text-align: center;
+    float: left;
+  }
+
+  .content {
+    text-align: left;
+  }
+
+  .footer {
+    text-align: right;
+    clear: both;
+  }
+}

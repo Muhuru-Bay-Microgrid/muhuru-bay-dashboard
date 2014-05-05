@@ -70,12 +70,25 @@ class RootUI extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        setContent(new CssLayout(new Label("Hello! I'm the root UI!"),
-                new Link("Go to other UI", new ExternalResource("anotherUI"))));
+        CustomLayout layout = new CustomLayout("dashboard");
+        setContent(layout);
+        // Header
+        Label header = new Label("Custom layout");
+        header.addStyleName("header");
+        layout.addComponent(header, "header");
+        // Menu
+        Label menu = new Label("menu");
+        layout.addComponent(menu, "menu");
+        // Content
+        Link content = new Link("Go to other UI", new ExternalResource("dashboard"));
+        layout.addComponent(content, "content");
+        // Footer
+        Label footer = new Label(" Created by Vaadin, 2013");
+        layout.addComponent(footer, "footer");
     }
 }
 
-@VaadinUI(path = "/anotherUI")
+@VaadinUI(path = "/dashboard")
 @Widgetset("org.mbmg.AppWidgetSet")
 @Title("Another UI")
 class AnotherUI extends UI {
@@ -102,11 +115,11 @@ class MyDefaultView extends VerticalLayout implements View {
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         addComponent(new Label(
                 String.format("%s: It's %s and I was just entered!",
-                        getClass().getSimpleName(), new Date())));
+                        getClass().getSimpleName(), new Date())
+        ));
 
         Chart chart = new Chart();
         chart.getConfiguration().addSeries(new ListSeries(1, 2, 3));
-
         addComponent(chart);
     }
 }

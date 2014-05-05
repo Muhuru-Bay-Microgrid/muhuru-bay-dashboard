@@ -3,15 +3,15 @@
  * this is an exemplar gradle build
  */
 buildscript {
-	repositories {
-		maven { url "http://repo.spring.io/libs-snapshot" }
-		mavenLocal()
-	}
-	dependencies {
-		// Not sure how to make this DRY - maybe using the properties plugin
-		// https://github.com/stevesaliman/gradle-properties-plugin
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.1.RELEASE")
-	}
+    repositories {
+        mavenLocal()
+        maven { url "http://repo.spring.io/libs-snapshot" }
+    }
+    dependencies {
+        // Not sure how to make this DRY - maybe using the properties plugin
+        // https://github.com/stevesaliman/gradle-properties-plugin
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.1.RELEASE")
+    }
 }
 
 apply plugin: 'java'
@@ -22,37 +22,40 @@ apply plugin: 'groovy'
 apply from: 'http://plugins.jasoft.fi/vaadin.plugin'
 
 ext {
-	project.version 	        = '1.0.0.BUILD-SNAPSHOT'
-	springBootVersion 	        = '1.0.2.RELEASE'
-    springDataSimpleDBVersion   = '1.0'
-	vaadinVersion 		        = '7.1.15'
+    project.version = '1.0.0.BUILD-SNAPSHOT'
+    springBootVersion = '1.0.2.RELEASE'
+    springDataSimpleDBVersion = '1.0'
+    vaadinVersion = '7.1.15'
 }
 
 vaadin {
+    version '7.1.+'
     widgetset 'org.mbmg.AppWidgetSet'
     manageRepositories false
     manageDependencies true
-
+    push true
     gwt {
-        logging true
-        logLevel "TRACE"
+        logging false
+        logLevel "INFO"
+        localWorkers 4
+        userAgent 'safari'
     }
 }
 
-
 jar {
-	baseName = 'muhuru-bay-dashboard'
-	version =  project.version
-	vaadin.addon.title = 'Muhuru Bay Dashboard'
+    baseName = 'muhuru-bay-dashboard'
+    version = project.version
+    vaadin.addon.title = 'Muhuru Bay Dashboard'
 }
 
 repositories {
-	mavenCentral()
-	maven { url "http://repo.spring.io/libs-release" }
-	maven { url "http://repo.spring.io/libs-snapshot" }
-	maven { url "http://repo.spring.io/milestone" }  // for AspectJ 1.8.0.RC3
-	maven { url "http://maven.vaadin.com/vaadin-addons"}
-	maven { url "http://oss.sonatype.org/releases"}
+    mavenLocal()
+    mavenCentral()
+    maven { url "http://repo.spring.io/libs-release" }
+    maven { url "http://repo.spring.io/libs-snapshot" }
+    maven { url "http://repo.spring.io/milestone" }
+    maven { url "http://maven.vaadin.com/vaadin-addons" }
+    maven { url "http://oss.sonatype.org/releases" }
     maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 }
 
@@ -62,52 +65,85 @@ configurations {
 }
 
 dependencies {
-	compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
-	compile("org.springframework.boot:spring-boot-starter-actuator:$springBootVersion")
-    compile("org.springframework.boot:spring-boot-starter-jetty:$springBootVersion")
-    compile("com.3pillarglobal.labs:spring-data-simpledb:${springDataSimpleDBVersion}")
-	compile("com.vaadin:vaadin-server:$vaadinVersion")
-	compile("com.vaadin:vaadin-client-compiled:$vaadinVersion")
-	compile("com.vaadin:vaadin-themes:$vaadinVersion")
-    compile("com.vaadin.addon:vaadin-touchkit-agpl:3.0.1")
-    compile("org.vaadin.spring:spring-boot-vaadin:0.0.2-SNAPSHOT")
-    compile("com.amazonaws:aws-java-sdk:1.7.4")
-    compile("org.yaml:snakeyaml:1.13")
-    compile("com.vaadin.addon:vaadin-charts:1.1.4")
-    // mandatory dependencies for using Spock
-    testCompile("org.codehaus.groovy:groovy-all:2.2.2")
-    compile("org.hibernate:hibernate-validator:4.2.0.Final")
-    testCompile("org.spockframework:spock-core:0.7-groovy-2.0")
-    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+    /**
+     * Spring Boot Compile Dependencies
+     */
+    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-jetty:$springBootVersion"
+    /**
+     * Allows for spring-boot configuration validation
+     */
+    compile "org.hibernate:hibernate-validator:4.2.0.Final"
+    /**
+     * So we can use yaml config files in spring-boot
+     */
+    compile "org.yaml:snakeyaml:1.13"
+    /**
+     * Spring Data template for SimpleDB
+     */
+    compile "com.3pillarglobal.labs:spring-data-simpledb:${springDataSimpleDBVersion}"
+    /**
+     * Vaadin required dependencies
+     */
+    compile "com.vaadin:vaadin-server:$vaadinVersion"
+    compile "com.vaadin:vaadin-client-compiled:$vaadinVersion"
+    /**
+     * We import rendeer theme in the mbmg theme so keep this
+     */
+    compile "com.vaadin:vaadin-themes:$vaadinVersion"
+    compile "com.vaadin.addon:vaadin-touchkit-agpl:3.0.1"
+    /**
+     * Magic vaadin4spring Spring Boot <--> Vaadin glue
+     */
+    compile "org.vaadin.spring:spring-boot-vaadin:0.0.2-SNAPSHOT"
+    /**
+     * Amazon SimpleDB API
+     */
+    compile "com.amazonaws:aws-java-sdk:1.7.4"
 
-    // optional dependencies for using Spock
-    testCompile "org.hamcrest:hamcrest-core:1.2" // only necessary if Hamcrest matchers are used
-    testRuntime "cglib:cglib-nodep:2.2"     // enables mocking of classes (in addition to interfaces)
-    testRuntime "org.objenesis:objenesis:1.2" // enables mocking of classes without default constructor (together with CGLIB)
-
-    testCompile("junit:junit")
+    /**
+     * TODO Remove this when dCharts is integrated
+     */
+    compile "com.vaadin.addon:vaadin-charts:1.1.4"
+    //compile "com.vaadin.addon:dcharts-widget:1.7.0"
+    /**
+     * Mandatory dependencies for using Spock test framework
+     */
+    testCompile "org.codehaus.groovy:groovy-all:2.2.2"
+    testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
+    /**
+     * Optional dependencies for using Spock
+     */
+    testCompile "org.hamcrest:hamcrest-core:1.2"
+    testRuntime "cglib:cglib-nodep:2.2"
+    testRuntime "org.objenesis:objenesis:1.2"
+    /**
+     * To get Spring test context support
+     */
+    testCompile "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+    testCompile "junit:junit"
 }
 
- dependencies {
-	javadocDeps "javax.portlet:portlet-api:2.0"
-	javadocDeps "javax.servlet:javax.servlet-api:3.0.1"
-	javadocDeps "com.vaadin:vaadin-server:${project.ext.vaadinVersion}"
- }
+dependencies {
+    javadocDeps "javax.servlet:javax.servlet-api:3.0.1"
+    javadocDeps "com.vaadin:vaadin-server:${project.ext.vaadinVersion}"
+}
 
- javadoc {
-	classpath += configurations.javadocDeps
-	options.addStringOption("sourcepath", "")
- }
+javadoc {
+    classpath += configurations.javadocDeps
+    options.addStringOption("sourcepath", "")
+}
 
 compileJava {
-	sourceCompatibility=1.8
-	targetCompatibility=1.8
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 }
 
 compileTestJava {
-	sourceCompatibility=1.8
-	targetCompatibility=1.8
-	options.compilerArgs += "-parameters"
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    options.compilerArgs += "-parameters"
 }
 
 task wrapper(type: Wrapper) { gradleVersion = '1.11' }
