@@ -10,35 +10,35 @@
   @include reindeer;
 
   /* Insert your theme rules here */
-  .v-label {
-    background-color: yellow;
-    font: 100% "Open Sans", sans-serif;
-    font-size: 14pt;
-  }
-
-  .header, .menu, .footer {
-    border: thin solid LightGrey;
-  }
 
   .header {
+    width: 100%;
+    background: #000000;
     text-align: center;
     font-size: 32px;
     height: 75px;
   }
 
   .menu {
-    height: 300px;
-    width: 20%;
-    text-align: center;
-    float: left;
+    height: 40px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    clear: both;
   }
 
   .content {
+    background: #232527;
     text-align: left;
   }
 
   .footer {
-    text-align: right;
+    position: absolute;
+    height: 32px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
     clear: both;
+    background: coral;
   }
 }
