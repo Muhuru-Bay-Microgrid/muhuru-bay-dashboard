@@ -19,6 +19,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: 'groovy'
+apply plugin: 'application'
 apply from: 'http://plugins.jasoft.fi/vaadin.plugin'
 
 ext {
@@ -27,6 +28,8 @@ ext {
     springDataSimpleDBVersion = '1.0'
     vaadinVersion = '7.1.15'
 }
+
+mainClassName = "org.mbmg.DashboardApplication"
 
 vaadin {
     version '7.1.+'
@@ -63,6 +66,7 @@ configurations {
     javadocDeps
     compile.exclude module: "spring-boot-starter-tomcat"
 }
+
 
 dependencies {
     /**
@@ -147,3 +151,4 @@ compileTestJava {
 }
 
 task wrapper(type: Wrapper) { gradleVersion = '1.11' }
+
