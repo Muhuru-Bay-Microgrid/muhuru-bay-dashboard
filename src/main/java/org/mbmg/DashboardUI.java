@@ -4,9 +4,6 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.event.ShortcutListener;
-import com.vaadin.event.dd.DragAndDropEvent;
-import com.vaadin.event.dd.DropHandler;
-import com.vaadin.event.dd.acceptcriteria.AcceptCriterion;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -17,9 +14,9 @@ import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.spring.VaadinUI;
-import org.vaadin.spring.navigator.SpringViewProvider;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Locale;
 
 /**
@@ -32,16 +29,23 @@ class DashboardUI extends UI {
 
     private static final long serialVersionUID = 1L;
     CssLayout root = new CssLayout();
+    CssLayout menu = new CssLayout();
     VerticalLayout loginLayout;
     CssLayout content = new CssLayout();
     @Autowired
     ErrorView errorView;
-    HashMap<String, Button> viewNameToMenuButton = new HashMap<String, Button>();
+
     HashMap<String, Class<? extends View>> routes = new HashMap<String, Class<? extends View>>() {
         {
             put("/dashboard", DashboardView.class);
+            put("/power-generated", PowerGeneratedView.class);
+            put("/energy-produced", EnergyProducedView.class);
+            put("/energy-consumed", EnergyConsumedView.class);
+            put("/wind-speed", WindSpeedView.class);
         }
     };
+
+    HashMap<String, Button> viewNameToMenuButton = new HashMap<String, Button>();
     private Navigator nav;
     private HelpManager helpManager;
 
@@ -58,6 +62,7 @@ class DashboardUI extends UI {
         bg.setSizeUndefined();
         bg.addStyleName("login-bg");
         root.addComponent(bg);
+
         buildLoginView(false);
     }
 
@@ -156,6 +161,8 @@ class DashboardUI extends UI {
     private void buildMainView() {
 
         nav = new Navigator(this, content);
+
+
         for (String route : routes.keySet()) {
             nav.addView(route, routes.get(route));
         }
@@ -163,7 +170,6 @@ class DashboardUI extends UI {
         helpManager.closeAll();
         removeStyleName("login");
         root.removeComponent(loginLayout);
-
         root.addComponent(new HorizontalLayout() {
             {
                 setSizeFull();
@@ -187,6 +193,10 @@ class DashboardUI extends UI {
                             }
                         });
 
+                        // Main menu
+                        addComponent(menu);
+                        setExpandRatio(menu, 1);
+
                         // User menu
                         addComponent(new VerticalLayout() {
                             {
@@ -197,6 +207,12 @@ class DashboardUI extends UI {
                                         new ThemeResource("img/profile-pic.png"));
                                 profilePic.setWidth("34px");
                                 addComponent(profilePic);
+//                                Label userName = new Label(Generator
+//                                        .randomFirstName()
+//                                        + " "
+//                                        + Generator.randomLastName());
+//                                userName.setSizeUndefined();
+//                                addComponent(userName);
 
                                 MenuBar.Command cmd = new MenuBar.Command() {
                                     @Override
@@ -220,12 +236,9 @@ class DashboardUI extends UI {
                                 exit.addStyleName("icon-cancel");
                                 exit.setDescription("Sign Out");
                                 addComponent(exit);
-                                exit.addClickListener(new Button.ClickListener() {
-                                    @Override
-                                    public void buttonClick(Button.ClickEvent event) {
-                                        buildLoginView(true);
-                                    }
-                                });
+                                exit.addClickListener((event) ->
+                                                buildLoginView(true)
+                                );
                             }
                         });
                     }
@@ -239,27 +252,29 @@ class DashboardUI extends UI {
 
         });
 
-        for (final String view : new String[]{"dashboard", "sales",
-                "transactions", "reports", "schedule"}) {
+        menu.removeAllComponents();
+
+        for (final String view : new String[]{"dashboard", "power-generated",
+                "energy-produced", "energy-consumed", "wind-speed"}) {
             Button b = new NativeButton(view.substring(0, 1).toUpperCase()
                     + view.substring(1).replace('-', ' '));
             b.addStyleName("icon-" + view);
-            b.addClickListener(new Button.ClickListener() {
-                @Override
-                public void buttonClick(Button.ClickEvent event) {
-                    event.getButton().addStyleName("selected");
-                    if (!nav.getState().equals("/" + view))
-                        nav.navigateTo("/" + view);
-                }
+            b.addClickListener((event) -> {
+                clearMenuSelection();
+                event.getButton().addStyleName("selected");
+                if (!nav.getState().equals("/" + view))
+                    nav.navigateTo("/" + view);
             });
 
-
+            menu.addComponent(b);
             viewNameToMenuButton.put("/" + view, b);
         }
+        menu.addStyleName("menu");
+        menu.setHeight("100%");
 
         viewNameToMenuButton.get("/dashboard").setHtmlContentAllowed(true);
         viewNameToMenuButton.get("/dashboard").setCaption(
-                "Dashboard<span class=\"badge\">2</span>");
+                "Home");
 
         String f = Page.getCurrent().getUriFragment();
         if (f != null && f.startsWith("!")) {
@@ -289,5 +304,18 @@ class DashboardUI extends UI {
             }
         });
 
+    }
+
+    private void clearMenuSelection() {
+        for (Iterator<Component> it = menu.getComponentIterator(); it.hasNext(); ) {
+            Component next = it.next();
+            if (next instanceof NativeButton) {
+                next.removeStyleName("selected");
+            } else if (next instanceof DragAndDropWrapper) {
+                // Wow, this is ugly (even uglier than the rest of the code)
+                ((DragAndDropWrapper) next).iterator().next()
+                        .removeStyleName("selected");
+            }
+        }
     }
 }
