@@ -10,7 +10,7 @@ buildscript {
     dependencies {
         // Not sure how to make this DRY - maybe using the properties plugin
         // https://github.com/stevesaliman/gradle-properties-plugin
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.1.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.0.M2")
     }
 }
 
@@ -24,9 +24,9 @@ apply from: 'http://plugins.jasoft.fi/vaadin.plugin'
 
 ext {
     project.version = '1.0.0.BUILD-SNAPSHOT'
-    springBootVersion = '1.0.2.RELEASE'
+    springBootVersion = '1.1.0.M2'
     springDataSimpleDBVersion = '1.0'
-    vaadinVersion = '7.2.0'
+    vaadinVersion = '7.2.1'
 }
 
 mainClassName = "org.mbmg.DashboardApplication"
@@ -48,7 +48,7 @@ vaadin {
 jar {
     baseName = 'muhuru-bay-dashboard'
     version = project.version
-    vaadin.addon.title = 'Muhuru Bay Dashboard'
+    vaadin.addon.title = 'Muhuru Bay Microgrid Dashboard'
 }
 
 repositories {
